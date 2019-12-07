@@ -17,6 +17,7 @@ NULL
 #' @param linetype line type ("solid", "dashed", ...)
 #' @param legend specify the legend position. Allowed values include: "top", "bottom", "left", "right".
 #' @param ggtheme the theme to be used for the scatter plot. Default is \code{\link{theme_pubr}()}.
+#' @param add.main.plot Add geom object to main plot.
 #' @param ... other arguments passed to the function \code{\link{ggscatter}()}.
 #'
 #' @examples
@@ -52,6 +53,7 @@ ggscatterhist <- function(
   margin.params = list(),
   margin.ggtheme = theme_void(),
   margin.space = FALSE,
+  add.main.plot = NULL,
   main.plot.size = 2,
   margin.plot.size = 1,
   title = NULL, xlab = NULL, ylab = NULL,
@@ -92,6 +94,10 @@ ggscatterhist <- function(
     legend = legend,
     ...
   )
+  
+  if(!is.null(add.main.plot)){
+    sp <- sp + add.main.plot  
+  }
 
   # Type of graphics to be added in the margins
   geomfunc <- switch (margin.plot,
