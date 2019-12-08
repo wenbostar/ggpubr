@@ -96,7 +96,14 @@ ggscatterhist <- function(
   )
   
   if(!is.null(add.main.plot)){
-    sp <- sp + add.main.plot  
+    if(is.list(add.main.plot)){
+      n_gg <- length(add.main.plot)
+      for(i_g in 1:n_gg){
+        sp <- sp + add.main.plot[[i_g]]
+      }
+    }else{
+      sp <- sp + add.main.plot  
+    }
   }
 
   # Type of graphics to be added in the margins
